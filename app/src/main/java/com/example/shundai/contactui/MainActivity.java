@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
 				// Toast.makeText(getApplication(),
 				// ((SortModel)adapter.getItem(position)).getName(),
 				// Toast.LENGTH_SHORT).show();
-				String number = callRecords.get(position).getNumber();
+				String number = onClickList.get(position).getNumber();
 				Toast.makeText(MainActivity.this, number, Toast.LENGTH_SHORT).show();
 			}
 		});
@@ -112,7 +112,7 @@ public class MainActivity extends Activity {
 //				String[] names = new String[] {};
 //				names = constact.toArray(names);
 				SourceDateList = filledData(callRecords);
-
+		        onClickList=callRecords;
 				// 根据a-z进行排序源数据
 				Collections.sort(SourceDateList, pinyinComparator);
 				adapter = new SortAdapter(MainActivity.this, SourceDateList);
@@ -180,7 +180,7 @@ public class MainActivity extends Activity {
 		return mSortList;
 
 	}
-
+	List<SortModel> onClickList;
 	/**
 	 * 根据输入框中的值来过滤数据并更新ListView
 	 * @param filterStr
@@ -204,6 +204,7 @@ public class MainActivity extends Activity {
 
 		// 根据a-z进行排序
 		Collections.sort(filterDateList, pinyinComparator);
+		onClickList=filterDateList;
 		adapter.updateListView(filterDateList);
 	}
 
